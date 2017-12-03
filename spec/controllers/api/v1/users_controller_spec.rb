@@ -1,7 +1,10 @@
 require 'spec_helper'
 
 describe Api::V1::UsersController do
-  before(:each) { request.headers['Accept'] = "application/vnd.blogplace.v1" }
+  before(:each) {
+    request.headers['Accept'] = "application/vnd.blogplace.v1, #{Mime::JSON}"
+    request.headers['Content-Type'] = Mime::JSON.to_s
+  }
 
   describe "GET #show" do
     before(:each) do
@@ -14,6 +17,6 @@ describe Api::V1::UsersController do
       expect(user_response[:email]).to eql @user.email
     end
 
-    it { should respond_with 200 }
+    it {should respond_with 200}
   end
 end
