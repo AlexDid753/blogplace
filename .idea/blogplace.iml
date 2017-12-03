@@ -50,7 +50,6 @@
     <orderEntry type="library" scope="PROVIDED" name="rspec-expectations (v3.7.0, ruby-2.3.3-p222) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-mocks (v3.7.0, ruby-2.3.3-p222) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-support (v3.7.0, ruby-2.3.3-p222) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="sass-listen (v4.0.0, ruby-2.3.3-p222) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="spring (v2.0.2, ruby-2.3.3-p222) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets (v3.7.1, ruby-2.3.3-p222) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets-rails (v3.2.1, ruby-2.3.3-p222) [gem]" level="application" />
@@ -60,7 +59,6 @@
     <orderEntry type="library" scope="PROVIDED" name="tilt (v2.0.8, ruby-2.3.3-p222) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="turbolinks (v5.0.1, ruby-2.3.3-p222) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="turbolinks-source (v5.0.3, ruby-2.3.3-p222) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="uglifier (v3.2.0, ruby-2.3.3-p222) [gem]" level="application" />
   </component>
   <component name="RModuleSettingsStorage">
     <LOAD_PATH number="0" />
