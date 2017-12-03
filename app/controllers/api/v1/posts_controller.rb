@@ -18,7 +18,7 @@ class Api::V1::PostsController < ApplicationController
   def create
     post = Post.new(post_params)
     if post.save
-      render json: post, status: 200, location: [:api, post]
+      render json: post, status: 200, location: [:api_v1_user_posts]
     else
       render json: { errors: post.errors }, status: 422
     end
