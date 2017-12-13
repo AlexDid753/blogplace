@@ -15,6 +15,12 @@ class Api::V1::PostsController < ApplicationController
     render json: post, status: 200
   end
 
+  def show_by_rating
+    post = Post.find_by_sql["SELECT title,text,rating FROM posts WHERE rating < ? ORDER BY rating LIMIT ?;", rating, limit]
+    #todo убрать rating из массива вызываемых данных. нужна для отладки
+    render json: post, status: 200
+  end
+
   def create
     post = Post.new(post_params)
     if post.save
