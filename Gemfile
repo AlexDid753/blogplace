@@ -18,9 +18,10 @@ gem 'font-awesome-rails'
 gem 'simple_form'
 
 
+
 group :development, :test do
   gem 'byebug'
-
+  gem 'faker'
 end
 
 group :development do
@@ -31,7 +32,6 @@ end
 group :test do
   gem "rspec-rails"
   gem "factory_bot_rails"
-  gem 'faker'
   gem 'database_cleaner'
   gem "shoulda-matchers", "~>2.5"
 end

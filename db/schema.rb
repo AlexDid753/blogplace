@@ -23,6 +23,9 @@ ActiveRecord::Schema.define(version: 20171213142924) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "posts", ["rating"], name: "index_posts_on_rating"
+
+
   create_table "ratings", force: :cascade do |t|
     t.integer  "post_id"
     t.float    "rating_value", limit: 2
