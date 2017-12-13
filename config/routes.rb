@@ -6,6 +6,7 @@ Blogplace::Application.routes.draw do
         resources :posts, :only => [:create]
       end
       resources :posts, :only => [:show, :index]
+      resources :ratings, :only => [:show, :create, :index]
     end
   end
 
