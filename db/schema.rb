@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203175833) do
+ActiveRecord::Schema.define(version: 20171213142924) do
 
   create_table "posts", force: :cascade do |t|
     t.string   "ip_address"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 20171203175833) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "post_id"
+    t.float    "rating_value", limit: 2
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "ratings", ["post_id"], name: "index_ratings_on_post_id"
+  add_index "ratings", ["rating_value"], name: "index_ratings_on_rating_value"
 
   create_table "users", force: :cascade do |t|
     t.string   "login"
