@@ -5,10 +5,17 @@ Blogplace::Application.routes.draw do
       resources :users, :only => [:show, :create, :update, :destroy, :index] do
         resources :posts, :only => [:create]
       end
-      resources :posts, :only => [:show, :index]
+      resources :posts, :only => [:show, :index] do
+        collection do
+          get 'top/:rating/:limit', action: :top
+        end
+      end
       resources :ratings, :only => [:show, :create, :index]
     end
   end
+
+
+
 
   root to: 'api/v1/users#index'
 end

@@ -1,5 +1,6 @@
 require 'rails_helper'
 require 'spec_helper'
+require 'pp'
 
 describe Api::V1::PostsController do
   describe "GET #show" do
@@ -13,7 +14,7 @@ describe Api::V1::PostsController do
       expect(post_response[:title]).to eql @post.title
     end
 
-    it { should respond_with 200 }
+    it {should respond_with 200}
   end
 
   describe "POST #create" do
@@ -21,7 +22,7 @@ describe Api::V1::PostsController do
       before(:each) do
         user = FactoryBot.create :user
         @post_attributes = FactoryBot.attributes_for :post
-        post :create, { user_id: user.id, post: @post_attributes }
+        post :create, {user_id: user.id, post: @post_attributes}
       end
 
       it "renders the json representation for the post record just created" do
@@ -29,14 +30,14 @@ describe Api::V1::PostsController do
         expect(post_response[:title]).to eql @post_attributes[:title]
       end
 
-      it { should respond_with 200 }
+      it {should respond_with 200}
     end
 
     context "when is not created" do
       before(:each) do
         user = FactoryBot.create :user
-        @invalid_post_attributes = { title: "S" }
-        post :create, { user_id: user.id, post: @invalid_post_attributes }
+        @invalid_post_attributes = {title: "S"}
+        post :create, {user_id: user.id, post: @invalid_post_attributes}
       end
 
       it "renders an errors json" do
@@ -44,7 +45,22 @@ describe Api::V1::PostsController do
         expect(post_response).to have_key(:errors)
       end
 
-      it { should respond_with 422 }
+      it {should respond_with 422}
     end
+  end
+
+  describe "GET #top" do
+    before(:each) do
+      @post = FactoryBot.create :post
+      @post.set_rating(5)
+      @post.update_rating_column
+      get 'top', rating: 5, limit: 10
+    end
+
+    it "returns the information about posts by rating" do
+      post_response = json_response
+      expect(post_response[:title]).to eql response.title
+    end
+
   end
 end

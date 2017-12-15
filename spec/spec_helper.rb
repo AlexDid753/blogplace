@@ -108,4 +108,12 @@ RSpec.configure do |config|
 =end
   #Including to test requests
   config.include Request::JsonHelpers, :type => :controller
+
+  def format(hash)
+    output = Hash.new
+    hash.each do |key, value|
+      output[key] = cleanup(value)
+    end
+    output
+  end
 end
