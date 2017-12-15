@@ -8,6 +8,7 @@ Blogplace::Application.routes.draw do
       resources :posts, :only => [:show, :index] do
         collection do
           get 'top/:rating/:limit', action: :top
+          get 'ips', action: :ips
         end
       end
       resources :ratings, :only => [:show, :create, :index]
