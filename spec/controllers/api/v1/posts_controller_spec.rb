@@ -22,7 +22,7 @@ describe Api::V1::PostsController do
       before(:each) do
         user = FactoryBot.create :user
         @post_attributes = FactoryBot.attributes_for :post
-        post :create, {user_id: user.id, post: @post_attributes}
+        post :create, {login: user.login, post: @post_attributes}
       end
 
       it "renders the json representation for the post record just created" do
@@ -37,7 +37,7 @@ describe Api::V1::PostsController do
       before(:each) do
         user = FactoryBot.create :user
         @invalid_post_attributes = {title: "S"}
-        post :create, {user_id: user.id, post: @invalid_post_attributes}
+        post :create, {login: user.login, post: @invalid_post_attributes}
       end
 
       it "renders an errors json" do

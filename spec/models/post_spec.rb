@@ -7,7 +7,7 @@ RSpec.describe Post, type: :model do
   it {should validate_presence_of :title}
   it {should validate_presence_of :text}
   it {should validate_presence_of :ip_address}
-  it {should validate_presence_of :user_id}
+  it {should validate_presence_of :login}
 
   it { should have_many(:ratings) }
 

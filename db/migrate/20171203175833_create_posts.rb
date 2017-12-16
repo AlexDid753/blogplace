@@ -4,7 +4,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :ip_address
       t.string :title, null: false
       t.text :text
-      t.integer :user_id, null: false
+      t.string :login
       t.float :rating, limit: 2, default: nil
 
       t.timestamps null: false

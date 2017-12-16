@@ -21,12 +21,16 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def ips
-    leery_ips = ActiveRecord::Base.connection.execute("SELECT ip_address, count(user_id)  FROM posts GROUP BY ip_address HAVING count(user_id) > 1")
+    leery_ips = ActiveRecord::Base.connection.execute("SELECT ip_address, count(login)  FROM posts GROUP BY ip_address HAVING count(login) > 1")
     leery_users = find_leery_users(leery_ips)
     render json: leery_users, status: 200
   end
 
   def create
+    params[:ip_address] = request.remote_ip
+    if !login_exist?
+      User.new(user_params)
+    end
     post = Post.new(post_params)
     if post.save
       render json: post, status: 200, location: [:api_v1_user_posts]
@@ -44,19 +48,23 @@ class Api::V1::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:user_id, :title, :text, :ip_address)
+    params.require(:post).permit(:login, :title, :text, :ip_address)
   end
 
   def find_leery_users(leery_ips)
     hash = Hash.new
     leery_ips.each do |leery_ip|
-      leery_user = ActiveRecord::Base.connection.execute("SELECT user_id  FROM posts WHERE ip_address = '#{leery_ip['ip_address']}'")
-      @leery_user_ids = []
+      leery_user = ActiveRecord::Base.connection.execute("SELECT login  FROM posts WHERE ip_address = '#{leery_ip['ip_address']}'")
+      @leery_user_logins = []
       leery_user.each do |n|
-        @leery_user_ids.push(n['user_id'])
+        @leery_user_logins.push(n['login'])
       end
-      hash.merge!({leery_ip['ip_address'] => @leery_user_ids})
+      hash.merge!({leery_ip['ip_address'] => @leery_user_logins})
     end
     return hash
+  end
+
+  def login_exist?
+    User.find_by(login: params[:login]).exists?
   end
 end

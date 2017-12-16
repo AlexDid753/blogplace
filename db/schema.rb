@@ -15,16 +15,13 @@ ActiveRecord::Schema.define(version: 20171213142924) do
 
   create_table "posts", force: :cascade do |t|
     t.string   "ip_address"
-    t.string   "title",      null: false
+    t.string   "title",                null: false
     t.text     "text"
-    t.integer  "user_id",    null: false
-    t.integer  "rating"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "login"
+    t.float    "rating",     limit: 2
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
-
-  add_index "posts", ["rating"], name: "index_posts_on_rating"
-
 
   create_table "ratings", force: :cascade do |t|
     t.integer  "post_id"
