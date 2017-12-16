@@ -4,7 +4,7 @@ class Api::V1::RatingsController < ApplicationController
   def create
     rating = Rating.new(rating_params)
     if rating.save
-      Post.find(rating_params[:id]).update_rating_column
+      Post.find(params[:post_id]).update_rating_column
       render json: rating, status: 200, location: [:api_v1_ratings]
     else
       render json: { errors: rating.errors }, status: 422

@@ -24,6 +24,7 @@ describe Api::V1::RatingsController do
     context "when is successfully created" do
       before(:each) do
         @rating = FactoryBot.create :rating
+        @post = FactoryBot.create :post
         post :create, { post_id: @rating.post_id, rating_value: @rating.rating_value }
       end
 

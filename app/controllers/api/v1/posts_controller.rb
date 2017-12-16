@@ -29,7 +29,7 @@ class Api::V1::PostsController < ApplicationController
   def create
     params[:ip_address] = request.remote_ip
     if !login_exist?
-      User.new(user_params)
+      User.new(params[:login])
     end
     post = Post.new(post_params)
     if post.save
@@ -65,6 +65,6 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def login_exist?
-    User.find_by(login: params[:login]).exists?
+    User.find_by(login: params[:login]).present?
   end
 end

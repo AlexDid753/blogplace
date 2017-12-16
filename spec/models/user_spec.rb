@@ -8,7 +8,7 @@ describe User do
 
   it { should respond_to(:login) }
   it { should be_valid }
-  it { should have_many(:posts) }
+
 
   describe "#posts association" do
 
