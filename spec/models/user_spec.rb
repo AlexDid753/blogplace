@@ -8,4 +8,13 @@ describe User do
 
   it { should respond_to(:login) }
   it { should be_valid }
+
+
+  describe "#posts association" do
+
+    before do
+      @user.save
+      3.times { FactoryBot.create :post, user: @user }
+    end
+  end
 end

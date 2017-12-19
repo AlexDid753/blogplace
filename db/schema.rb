@@ -11,17 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203175833) do
+ActiveRecord::Schema.define(version: 20171217130421) do
 
   create_table "posts", force: :cascade do |t|
     t.string   "ip_address"
-    t.string   "title",      null: false
+    t.string   "title",                null: false
     t.text     "text"
-    t.integer  "user_id",    null: false
-    t.integer  "rating"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "login"
+    t.float    "rating",     limit: 2
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
+
+  add_index "posts", ["ip_address"], name: "index_posts_on_ip_address"
+  add_index "posts", ["rating"], name: "index_posts_on_rating"
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "post_id"
+    t.float    "rating_value", limit: 2
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "ratings", ["post_id"], name: "index_ratings_on_post_id"
+  add_index "ratings", ["rating_value"], name: "index_ratings_on_rating_value"
 
   create_table "users", force: :cascade do |t|
     t.string   "login"
@@ -30,5 +43,9 @@ ActiveRecord::Schema.define(version: 20171203175833) do
   end
 
   add_index "users", ["login"], name: "index_users_on_login", unique: true
+
+  create_table "users2", force: :cascade do |t|
+    t.integer "group_id", limit: 8
+  end
 
 end
