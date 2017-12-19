@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171217122739) do
+ActiveRecord::Schema.define(version: 20171217130421) do
 
   create_table "posts", force: :cascade do |t|
     t.string   "ip_address"
@@ -43,5 +43,9 @@ ActiveRecord::Schema.define(version: 20171217122739) do
   end
 
   add_index "users", ["login"], name: "index_users_on_login", unique: true
+
+  create_table "users2", force: :cascade do |t|
+    t.integer "group_id", limit: 8
+  end
 
 end
